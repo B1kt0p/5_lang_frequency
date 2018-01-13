@@ -1,5 +1,6 @@
 import argparse
 import re
+import collections
 
 
 def get_argv():
@@ -32,32 +33,20 @@ def get_most_frequent_words(text):
         word_list.pop(0)
     if word_list[-1] == "":
         word_list.pop()
-    words = set(word_list)
-    frequent_words = []
-    for word in words:
-        coincidence = 1
-        number_word = sum(
-            [coincidence for x in word_list if x == word]
-        )
-        frequent_words.append((word, number_word))
-    frequent_words = sorted(
-        frequent_words,
-        key=lambda x: x[1],
-        reverse=True
-    )
-    return frequent_words
+    most_frequent_words = collections.Counter(word_list).most_common(10)
+    return most_frequent_words
 
 
 if __name__ == '__main__':
     file_path = get_argv()
     text = load_data(file_path)
     if text:
-        frequent_words = get_most_frequent_words(text)
-        number = 1
-        for frequent_word in frequent_words[:10]:
+        most_frequent_words = get_most_frequent_words(text)
+        item_number = 1
+        for most_frequent_word in most_frequent_words:
             print("{0}. '{1}' упоменаеться {2} раз".format(
-                number, frequent_word[0], frequent_word[1]
+                item_number, most_frequent_word[0], most_frequent_word[1]
             ))
-            number += 1
+            item_number += 1
     else:
         print("Путь до файла введен не верно!")
