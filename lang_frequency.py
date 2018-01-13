@@ -33,7 +33,8 @@ def get_most_frequent_words(text):
         word_list.pop(0)
     if word_list[-1] == "":
         word_list.pop()
-    most_frequent_words = collections.Counter(word_list).most_common(10)
+    number_most_frequent_words = 10
+    most_frequent_words = collections.Counter(word_list).most_common(number_most_frequent_words)
     return most_frequent_words
 
 
