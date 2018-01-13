@@ -42,11 +42,9 @@ if __name__ == '__main__':
     text = load_data(file_path)
     if text:
         most_frequent_words = get_most_frequent_words(text)
-        item_number = 1
         for most_frequent_word in most_frequent_words:
-            print("{0}. '{1}' упоменаеться {2} раз".format(
-                item_number, most_frequent_word[0], most_frequent_word[1]
+            print("'{0}' упоменается {1} раз".format(
+                most_frequent_word[0], most_frequent_word[1]
             ))
-            item_number += 1
     else:
         print("Путь до файла введен не верно!")
