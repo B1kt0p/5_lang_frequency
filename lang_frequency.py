@@ -29,9 +29,11 @@ def get_most_frequent_words(text):
     word_list = re.split(compile_re, text)
     # Если будут не алфовитно-цифровой символ в начале текста или в конце,
     # то первый и последний элемент списка будет ""
-    if word_list[0] == "":
-        word_list.pop(0)
-    if word_list[-1] == "":
+    index_first = 0
+    index_last = -1
+    if word_list[index_first] == "":
+        word_list.pop(index_first)
+    if word_list[index_last] == "":
         word_list.pop()
     number_most_frequent_words = 10
     most_frequent_words = collections.Counter(word_list).most_common(number_most_frequent_words)
